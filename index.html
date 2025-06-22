@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Happy Birthday Tt Thắm! 🎉</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #feca57);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 2rem;
+    }
+    .name {
+      font-size: 3rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .message {
+      font-size: 1.2rem;
+      color: white;
+      margin: 1.5rem 0;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    #startBtn {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      background-color: deeppink;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      margin-top: 1.5rem;
+    }
+    .gallery {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .gallery img {
+      max-width: 90vw;
+      max-height: 300px;
+      display: none;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .gallery img.show {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+    .click-heart {
+      position: absolute;
+      font-size: 1.5rem;
+      pointer-events: none;
+      animation: floatUp 1s ease-out forwards;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-50px); }
+    }
+    .footer-note {
+      font-size: 1rem;
+      color: white;
+      margin-top: 3rem;
+      font-style: italic;
+      opacity: 0.8;
+      padding-bottom: 3rem;
+    }
+    @media (max-width: 600px) {
+      .name { font-size: 2.2rem; }
+      .message { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="font-size: 2.2rem; color: white; text-shadow: 2px 2px 6px rgba(0,0,0,0.3); margin-bottom: 1rem;">
+     🎉 Happy Birthday Tt Thắm! 🎉
+</h1>
+
+        <div class="message">
+      💕 Chúc Tt sinh nhật thật vui vẻ và hạnh phúc! 💕<br>
+      Mong rằng tuổi mới sẽ mang đến cho Tt thật nhiều niềm vui,<br>
+      những trải nghiệm tuyệt vời và những kỷ niệm đẹp.<br>
+      Tt xứng đáng có tất cả những điều tốt đẹp nhất trên đời! ✨<br><br>
+      🌟 Yêu Tt nhiều lắm! 🌟
+    </div>
+    <button id="startBtn">🎈 Bắt đầu 🎶</button>
+
+    <audio id="bgAudio" loop>
+      <source src="music.mp3" type="audio/mp3" />
+    </audio>
+
+    <div class="gallery">
+      <img src="img1.jpg" alt="Ảnh 1" />
+      <img src="img2.jpg" alt="Ảnh 2" />
+      <img src="img3.jpg" alt="Ảnh 3" />
+    </div>
+
+    <div class="footer-note">
+      📝 Dù không thể nói hết bằng lời, nhưng mong rằng món quà nhỏ này sẽ khiến Tt cười một xíu và nhớ rằng có những người luôn quan tâm Tt!
+    </div>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const audio = document.getElementById('bgAudio');
+    const images = document.querySelectorAll('.gallery img');
+    let isPlaying = false;
+
+    startBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.play();
+        revealImages();
+        startBtn.textContent = "⏸ Dừng nhạc";
+        isPlaying = true;
+      } else {
+        audio.pause();
+        startBtn.textContent = "▶️ Phát lại nhạc";
+        isPlaying = false;
+      }
+    });
+
+    function revealImages() {
+      let delay = 0;
+      images.forEach((img) => {
+        setTimeout(() => {
+          img.classList.add('show');
+        }, delay);
+        delay += 1500;
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      const heart = document.createElement('div');
+      heart.className = 'click-heart';
+      heart.innerText = '💖';
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    });
+  </script>
+</body>
+</html>
